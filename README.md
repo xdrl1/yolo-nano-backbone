@@ -1,7 +1,7 @@
 Copy your xmodel to the board
 
 ### Steps for on board deployement
-``'bash
+```bash
     pip install --upgrade pip wheel setuptools
     cd ~/yolonano
     pip install --user -r requirements_board.txt
