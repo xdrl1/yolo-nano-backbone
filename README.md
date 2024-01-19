@@ -82,12 +82,19 @@ The dataset MSCOCO2017 contains 118287 images for training and 5000 images for v
 After quantization check https://docs.xilinx.com/r/en-US/ug1414-vitis-ai/Compiling-for-DPU
 
 For Kv260:
+
+```bash
 vai_c_xir -x PATH_TO/YOUR.xmodel -a /opt/vitis_ai/compiler/arch/DPUCZDX8G/KV260/arch.json -o EXPORT_PATH/ -n NEWNAME
+```
 
 Export svg graph
+
+```bash
 xdputil xmodel Path_TO_/xmodel -s
+```
 
 ### Performance
+
 |Metric | Float | Quantized | QAT |
 | -     | -    | - | - |
 |AP0.50:0.95|0.220|0.136|0.210|
