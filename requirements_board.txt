@@ -1,0 +1,12 @@
+numpy
+opencv_python
+loguru
+tqdm
+scipy
+tensorboard
+thop
+ninja
+tabulate
+
+
+pycocotools>=2.0.2

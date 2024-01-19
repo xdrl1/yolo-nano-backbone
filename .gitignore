@@ -1,0 +1,11 @@
+data/*
+YOLOX_outputs/
+*.pyc
+*.so
+*.o
+code/build/
+code/yolox.egg-info/
+drone2021_copy/
+code/Comparison/images1.1
+code/Comparison/images2.1
+code/Comparison/images2.2
