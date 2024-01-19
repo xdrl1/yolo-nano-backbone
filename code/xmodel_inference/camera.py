@@ -154,11 +154,11 @@ def inference(dpu):
                         # Extract and convert the bounding box coordinates
                         x1, y1, x2, y2 = bbox[0].item(), bbox[1].item(), bbox[2].item(), bbox[3].item()
                         #print(x1,y1,x2,y2)
-                        # calculate coord.
+                        # calculate coordinates
                         start_point = (int(x1/2),int(y1/2))
                         end_point = (int(x2/2),int(y2/2))
-                        print(start_point,end_point)
-                        print(frame.shape)
+                        #print(start_point,end_point)
+                        #print(frame.shape)
                         frame = cv2.rectangle(frame, start_point, end_point, color, thickness)
             cv2.imshow('Frame with Bounding Box', frame)
 
