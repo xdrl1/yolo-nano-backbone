@@ -1,7 +1,7 @@
 
 
 from pycocotools.coco import COCO
-
+# This is basically the dry run of the other script! Check the other script in the dir for detailed explainations.
 
 def bird_moving(image_id1, image_id2, coco, bird_category_id=0, displacement_threshold=5 ):
     # Get the annotations for the current image IDs
@@ -73,8 +73,7 @@ def usable_images(annotations_file):
             usable_images += 1
             usable_image_list.append(image_id1)
 
-    return images_without_birds_count, images_with_large_boxes_count, image_list_no_birds,usable_images,usable_image_list #I know they are redundant, but troughout the process we were interested in different parameters
-
+    return images_without_birds_count, images_with_large_boxes_count, image_list_no_birds,usable_images,usable_image_list #I know they are redundant, but troughout the process we were interested in different parameters.
 if __name__ == "__main__":
     # Path to annotation file
     annotations_file = '/Volumes/Externe_SSD/Engineering_Project/drone2021_copy/annotations/split_train_coco.json'

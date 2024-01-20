@@ -1,8 +1,13 @@
 import json
 import os
 from pycocotools.coco import COCO
-#
 
+
+#Use this script with caution it will delete not usable images and modify the annotation file. Make a copy of your data before using!!!
+# I reduced the dataset from 60gb to around 5gb.
+
+
+# Checks if a bird moved by at least 5 pixels
 def bird_moving(image_id1, image_id2, coco, bird_category_id=0, displacement_threshold=5 ):
     # Get the annotations for the current image IDs
     annotations1 = coco.loadAnns(coco.getAnnIds(imgIds=image_id1, catIds=[bird_category_id]))
@@ -21,7 +26,7 @@ def bird_moving(image_id1, image_id2, coco, bird_category_id=0, displacement_thr
             return True
 
     return False
-
+# returns several information about the bird dataset. The usable_image_list is teh most important one, it is used in the delete function. Check line 87
 def usable_images(annotations_file):
     try:
         # Load the COCO annotations file
@@ -75,7 +80,7 @@ def usable_images(annotations_file):
     return images_without_birds_count, images_with_large_boxes_count, image_list_no_birds,usable_images,usable_image_list #I know they are redundant, but troughout the process we were interested in different parameters
 
 
-
+# this function deletes all images which are not in the usable_image_list and also updates the annotation file.
 def delete_not_usable_images(annotations_file, images_dir):
     # Load the COCO annotations file
     coco = COCO(annotations_file)
@@ -110,7 +115,7 @@ def delete_not_usable_images(annotations_file, images_dir):
 
 
 if __name__ == "__main__":
-    # Path to ann files and image dir
+    # Path to annotation files and image dir
     annotations_file = '/Volumes/Externe_SSD/Engineering_Project/drone2021_copy/annotations/split_train_coco.json'
     annotations_file_val = '/Volumes/Externe_SSD/Engineering_Project/drone2021_copy/annotations/split_val_coco.json'
     images_dir = '/Volumes/Externe_SSD/Engineering_Project/drone2021_copy/images/'
@@ -118,3 +123,5 @@ if __name__ == "__main__":
     delete_not_usable_images(annotations_file, images_dir)
     delete_not_usable_images(annotations_file_val, images_dir)
     print("done")
+
+
