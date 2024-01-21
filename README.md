@@ -16,10 +16,11 @@
     docker run --gpus device=0 -d -it --shm-size 32G --user root --mount source=$(pwd),target=/home/vitis-ai-user/yolonano,type=bind tumbgd/vai-pt-cuda
     docker exec -it <docker-container-id> bash
     ```
+clone to repo to the current path (/home/vitis-ai-user/yolonano).
 
 2. within the docker container, install dependencies
     ```bash
-    cd ~/yolonano
+    cd ~/yolonano/yolo-nano-backbone
     pip install --user -r requirements.txt
     sudo chmod -R 777 code
     cd code
