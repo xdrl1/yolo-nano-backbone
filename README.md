@@ -92,7 +92,7 @@ vai_c_xir -x PATH_TO/YOUR.xmodel -a /opt/vitis_ai/compiler/arch/DPUCZDX8G/KV260/
 Export svg graph
 
 ```bash
-xdputil xmodel Path_TO_/xmodel -s
+xdputil xmodel Path_TO_COMPILED.xmodel/ -s
 ```
 
 ### Performance
