@@ -70,11 +70,12 @@ The dataset MSCOCO2017 contains 118287 images for training and 5000 images for v
     ```
 
 3. Model quantization
+   For quantization you need a seperate quant exp file. Please refer to the example. The get_model and get_eveluator functions need to be adapted as shown in the file.
     ```shell
     sudo -E bash code/run_quant.sh
     ```
 
-4. QAT(Quantization-Aware-Training), model converting and xmodel dumping
+5. QAT(Quantization-Aware-Training), model converting and xmodel dumping
   - Configure the variables and in `code/run_qat.sh` and `code/exps/example/custom/yolox_nano_deploy_relu_qat.py`, read the steps(including QAT, model testing, model converting and xmodel dumping) in the script and run the step you want.
     ```shell
     sudo -E bash code/run_qat.sh
