@@ -70,7 +70,7 @@ The dataset MSCOCO2017 contains 118287 images for training and 5000 images for v
     ```
 
 3. Model quantization
-   For quantization you need a seperate quant exp file. Please refer to the example. The get_model and get_eveluator functions need to be adapted as shown in the file.
+For quantization you need a seperate quant exp file. Please refer to the example. The get_model and get_eveluator functions need to be adapted as shown in the file.
     ```shell
     sudo -E bash code/run_quant.sh
     ```
