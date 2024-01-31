@@ -28,5 +28,5 @@ python -m pip install --user -r requirements_board.txt
 ## Run the following to execute the code and detect birds!
 ```
 cd/code/xmodel_inference
-python camery.py
+python camera.py
 ```
