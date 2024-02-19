@@ -55,6 +55,11 @@ The dataset MSCOCO2017 contains 118287 images for training and 5000 images for v
                  ├── 000000000016.jpg
                  └── ...
   ```
+  ```
+Note that I chnaged line 281 in yolox_base.py to work with my dataset structure. CHANGE BACK FOR COCO. 
+```plain
+name="images" if not testdev else "test2017",                               #change from val2017 to images
+```
 
 ### Train/Eval/QAT
 
