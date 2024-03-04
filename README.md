@@ -74,23 +74,28 @@ name="images" if not testdev else "test2017",                               #cha
     ```
 
 3. Model quantization
-For quantization you need a seperate quant exp file. Please refer to the example. The get_model and get_eveluator functions need to be adapted as shown in the file.
+    For quantization you need a seperate quant exp file. Please refer to the example. The get_model and get_eveluator functions need to be adapted as shown in the file.
     ```shell
     sudo -E bash code/run_quant.sh
     ```
 
-5. QAT(Quantization-Aware-Training), model converting and xmodel dumping
-  - Configure the variables and in `code/run_qat.sh` and `code/exps/example/custom/yolox_nano_deploy_relu_qat.py`, read the steps(including QAT, model testing, model converting and xmodel dumping) in the script and run the step you want.
+4. QAT(Quantization-Aware-Training), model converting and xmodel dumping
+    Configure the variables and in `code/run_qat.sh` and `code/exps/example/custom/yolox_nano_deploy_relu_qat.py`, read the steps(including QAT, model testing, model converting and xmodel dumping) in the script and run the step you want.
     ```shell
     sudo -E bash code/run_qat.sh
     ```
-5.
-After quantization check https://docs.xilinx.com/r/en-US/ug1414-vitis-ai/Compiling-for-DPU
+5. After quantization check https://docs.xilinx.com/r/en-US/ug1414-vitis-ai/Compiling-for-DPU
 
-For Kv260:
+For KV260:
 
 ```bash
 vai_c_xir -x PATH_TO/YOUR.xmodel -a /opt/vitis_ai/compiler/arch/DPUCZDX8G/KV260/arch.json -o EXPORT_PATH/ -n NEWNAME
+```
+
+For ZCU102:
+
+```bash
+vai_c_xir -x PATH_TO/YOUR.xmodel -a /opt/vitis_ai/compiler/arch/DPUCZDX8G/ZCU102/arch.json -o EXPORT_PATH/ -n NEWNAME
 ```
 
 Export svg graph
