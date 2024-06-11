@@ -114,9 +114,7 @@ def postprocess_2(prediction, num_classes=1, conf_thre=0.04, nms_thre=0.25, clas
 
 def inference(dpu):
     # Initialize the webcam
-    cap = cv2.VideoCapture(0,cv2.CAP_V4L2)
-    cap.set(cv2.CAP_PROP_FRAME_WIDTH, 3840)
-    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 2160)
+    cap = cv2.VideoCapture("rtsp://admin:vogelki@192.168.178.28/Preview_01_sub")
    
 
     img_counter = 0
@@ -183,7 +181,7 @@ def inference(dpu):
 
 
 
-g = xir.Graph.deserialize('./no_qat/compiled_bird.xmodel')
+g = xir.Graph.deserialize('./no_qat/new_fingerprint.xmodel')
 #subgraph_YOLOX__YOLOX_YOLOPAFPN_backbone__BaseConv_lateral_conv0__Conv2d_conv__ret_217 is the yolo model
 sg = g.get_root_subgraph().toposort_child_subgraph()
 dpuYoloN = vart.Runner.create_runner(sg[1], "run")
