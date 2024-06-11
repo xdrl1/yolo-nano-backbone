@@ -88,6 +88,10 @@ name="images" if not testdev else "test2017",                               #cha
 
 For KV260:
 
+Note: I used smartcam device tree to accelerate hardware video decoding. In order to match the device tree I needed to change the /opt/vitis_ai/compiler/arch/DPUCZDX8G/KV260/arch.json like shown in the picture.
+
+<img width="492" alt="image" src="https://github.com/xdrl1/yolo-nano-backbone/assets/55228676/e03c7da9-5514-4f1d-a625-1fdee77adfff">
+
 ```bash
 vai_c_xir -x PATH_TO/YOUR.xmodel -a /opt/vitis_ai/compiler/arch/DPUCZDX8G/KV260/arch.json -o EXPORT_PATH/ -n NEWNAME
 ```
