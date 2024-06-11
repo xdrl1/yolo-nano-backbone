@@ -1,8 +1,0 @@
-{
-    "lib": "libvart-dpu-runner.so",
-    "filename": "compiled_bird.xmodel",
-    "kernel": [
-        "subgraph_YOLOX__YOLOX_YOLOPAFPN_backbone__BaseConv_lateral_conv0__Conv2d_conv__ret_217"
-    ],
-    "target": "DPUCZDX8G_ISA1_B4096"
-}
