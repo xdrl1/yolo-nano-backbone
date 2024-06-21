@@ -161,7 +161,7 @@ def inference(dpu):
 
 
 
-g = xir.Graph.deserialize('./no_qat/new_fingerprint.xmodel')
+g = xir.Graph.deserialize('./no_qat/compiled_bird.xmodel')
 #subgraph_YOLOX__YOLOX_YOLOPAFPN_backbone__BaseConv_lateral_conv0__Conv2d_conv__ret_217 is the yolo model
 sg = g.get_root_subgraph().toposort_child_subgraph()
 dpuYoloN = vart.Runner.create_runner(sg[1], "run")
