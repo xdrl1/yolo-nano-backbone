@@ -61,7 +61,7 @@ class COCODataset(Dataset):
         self.data_dir = data_dir
         self.json_file = json_file
 
-        self.coco = COCO(os.path.join(self.data_dir, "annotations", self.json_file))
+        self.coco = COCO(os.path.join("/home/vitis-ai-user/yolonano/code/datasets/COCO", "annotations", self.json_file))
         remove_useless_info(self.coco)
         self.ids = self.coco.getImgIds()
         self.class_ids = sorted(self.coco.getCatIds())

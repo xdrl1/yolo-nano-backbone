@@ -6,7 +6,7 @@
 # export CUDA_VISIBLE_DEVICES=0
 # GPU_NUM=1
 # BATCH=8
-CFG=code/exps/example/custom/yolox_nano_deploy_relu_qat_bird.py
+CFG=code/exps/example/custom/yolox_nano_deploy_relu_qat_building.py
 # Step1: QAT
 # /opt/vitis_ai/conda/envs/vitis-ai-pytorch/bin/python -m yolox.tools.train -f ${CFG} -d ${GPU_NUM} -b ${BATCH} -o
 
@@ -16,7 +16,7 @@ export CUDA_VISIBLE_DEVICES=0
 GPU_NUM=1
 BATCH=32
 
-WORKSPACE=YOLOX_outputs/yolox_nano_deploy_relu_qat_bird # path to best .pth from QAT
+WORKSPACE=YOLOX_outputs/yolox_nano_deploy_relu_qat_building # path to best .pth from QAT
 
 
 #Step2: Eval accuracy after QAT

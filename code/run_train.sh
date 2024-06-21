@@ -15,7 +15,7 @@
 echo "Conducting training..."
 export CUDA_VISIBLE_DEVICES=0
 GPU_NUM=1
-BATCH=16
+BATCH=4
 
-CFG=code/exps/example/custom/yolox_nano_deploy_relu_bird.py
+CFG=code/exps/example/custom/yolox_nano_deploy_relu_building.py
 /opt/vitis_ai/conda/envs/vitis-ai-pytorch/bin/python -m yolox.tools.train -f ${CFG} -d ${GPU_NUM} -b ${BATCH} -o

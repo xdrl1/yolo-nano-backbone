@@ -20,6 +20,6 @@ export LD_LIBRARY_PATH=${PWD}/code:${LD_LIBRARY_PATH}
 BATCH=32
 
 
-CFG=code/exps/example/custom/yolox_nano_deploy_relu_bird.py
+CFG=code/exps/example/custom/yolox_nano_deploy_relu_building.py
 CKPT=float/baseline.pth
 /opt/vitis_ai/conda/envs/vitis-ai-pytorch/bin/python -m yolox.tools.eval -f ${CFG} -c ${CKPT} -b ${BATCH} -d ${GPU_NUM}

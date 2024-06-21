@@ -9,7 +9,7 @@
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and 
+# See the License for the specific language governing permissions and
 # limitations under the License.
 
 export CUDA_VISIBLE_DEVICES=0
@@ -19,7 +19,7 @@ export W_QUANT=1
 export CUDA_HOME=/usr/local/cuda-11.7
 
 BATCH=32
-CFG=code/exps/example/custom/yolox_nano_deploy_relu_bird_q.py
+CFG=code/exps/example/custom/yolox_nano_deploy_relu_building_q.py
 CKPT=float/baseline.pth
 Q_DIR='quantize_result_bird_setfalsehead2'
 

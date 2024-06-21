@@ -45,7 +45,7 @@ class Exp(BaseExp):
         # name of annotation file for testing
         self.test_ann = "instances_test2017.json"
 
-        self.coco_folder_name = "train2017"
+        self.coco_folder_name = "bbd2k5-images-image"
 
         # --------------- transform config ----------------- #
         # prob of applying mosaic aug
