@@ -63,7 +63,7 @@ def decode_outputs(hw, outputs, dtype):
 
 
 
-def postprocess_2(prediction, num_classes=1, conf_thre=0.6, nms_thre=0.25, class_agnostic=False):
+def postprocess_2(prediction, num_classes=1, conf_thre=0.55, nms_thre=0.25, class_agnostic=False):
     box_corner = prediction.new(prediction.shape)
     box_corner[:, :, 0] = prediction[:, :, 0] - prediction[:, :, 2] / 2
     box_corner[:, :, 1] = prediction[:, :, 1] - prediction[:, :, 3] / 2
@@ -116,39 +116,42 @@ def inference(dpu):
     # Initialize the webcam
     cap = cv2.VideoCapture("rtsp://admin:vogelki1@192.168.1.110")
    
-
-
-    color = (0, 0, 255)
+    color = (0, 0, 255)  # Color for the rectangle
+    text_color = (0, 255, 0)  # Color for the text (green)
     thickness = 2
+    font_scale = 0.5
+    font = cv2.FONT_HERSHEY_SIMPLEX
 
     while True:
 
         ret, frame = cap.read()
         if ret:
-            img = cv2.resize(frame,(3840,2176))
+            img = cv2.resize(frame, (3840, 2176))
             img = img[numpy.newaxis, :, :, :].astype(numpy.float32)
             out = RunDPU(dpuYoloN, img)
             out = postprocess_2(postprocess_1(out))
 
-
-            
-
             if out[0] is not None:
                 for pred in out:
-
                     # Iterate over each prediction tensor
                     for bbox in pred:
-
                         # Extract and convert the bounding box coordinates
                         x1, y1, x2, y2 = bbox[0].item(), bbox[1].item(), bbox[2].item(), bbox[3].item()
 
-                        # calculate coordinates
-                        start_point = (int(x1/2),int(y1/2))
-                        end_point = (int(x2/2),int(y2/2))
+                        # Calculate coordinates for the rectangle
+                        start_point = (int(x1), int(y1 * 2160 / 2176))
+                        end_point = (int(x2), int(y2 * 2160 / 2176))
 
-
+                        # Draw rectangle on the frame
                         frame = cv2.rectangle(frame, start_point, end_point, color, thickness)
-                        cv2.imwrite('./detections/' + str(time.time()) + '.jpg', frame)
+
+                        # Extract the confidence score and display it
+                        confidence = bbox[4].item()  # Confidence as a decimal
+                        text = f'{confidence:.2f}'
+                        cv2.putText(frame, text, (start_point[0], start_point[1] - 10), font, font_scale, text_color, thickness)
+
+                        cv2.imwrite('/mnt/usb/' + str(time.time()) + '.jpg', frame)
+                        print("File saved!")
             cv2.imshow('Frame with Bounding Box', frame)
 
             # Press 'q' to quit
@@ -158,6 +161,7 @@ def inference(dpu):
     # Release the webcam
     cap.release()
     cv2.destroyAllWindows()
+
 
 
 
