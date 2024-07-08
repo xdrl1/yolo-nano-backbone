@@ -38,18 +38,18 @@ def inference(model, img_path):
     height, width = img.shape[:2]
     exp = get_exp(CONFIG_FILE_PATH)
     # Preprocess the image
-    img_preprocessed, _ = preprocess(img_rgb, exp.test_size, swap=(2,0,1))
+    img_preprocessed, _ = preprocess(img, exp.test_size, swap=(2,0,1))
     img_tensor = torch.from_numpy(img_preprocessed).unsqueeze(0)
 
     # Run inference
     with torch.no_grad():
         #print(img_tensor.size()) ([1, 3, 2176, 3840])
         predictions = model(img_tensor)
-        print("prediction size is" ,predictions.size())
-        print("shape of tensor", img_tensor.size())
+        #print("prediction size is" ,predictions.size())
+        #print("shape of tensor", img_tensor.size())
         predictions = postprocess(predictions, exp.num_classes, exp.test_conf, exp.nmsthre)
 
-    return predictions, img
+    return predictions, img_rgb
 
 # Plot bounding boxes
 def plot_bboxes(image,predictions,img_id):
@@ -67,13 +67,13 @@ def plot_bboxes(image,predictions,img_id):
 
     # Draw predicted boxes in red
     for pred in predictions:
-        print(pred)
+        print(pred[0,4])
         # Iterate over each prediction tensor
         for bbox in pred:
-            print(bbox)
+            #print(bbox)
             # Extract and convert the bounding box coordinates
             x1, y1, x2, y2 = bbox[0].item(), bbox[1].item(), bbox[2].item(), bbox[3].item()
-            print(x1,y1,x2,y2)
+            #print(x1,y1,x2,y2)
             # Check for valid coordinates
             if x1 < 0 or y1 < 0 or x2 < 0 or y2 < 0:
                 continue  # Skip invalid boxes
@@ -81,7 +81,7 @@ def plot_bboxes(image,predictions,img_id):
             # Create the rectangle patch and add it to the plot
             rect = patches.Rectangle((x1, y1), x2 - x1, y2 - y1, linewidth=1, edgecolor='r', facecolor='none')
             ax.add_patch(rect)
-    plt.savefig(f"/home/vitis-ai-user/yolonano/code/Comparison/images2.2/{img_id}_test.png")
+    plt.savefig(f"/home/vitis-ai-user/yolonano/code/Comparison/images/{img_id}_test.png")
 
 # Load the YOLOX model
 model = load_model(CONFIG_FILE_PATH, WEIGHTS_FILE_PATH)
@@ -90,17 +90,17 @@ model = load_model(CONFIG_FILE_PATH, WEIGHTS_FILE_PATH)
 coco = COCO(ANNOTATION_FILE_PATH)
 img_ids = coco.getImgIds()
 #chosoe random pic
-for i in range(5    ):
+for i in range(10):
     img_id = random.choice(img_ids)
     image_info = coco.loadImgs(img_id)[0]
     #get path to pic
     IMAGE_PATH = image_dir + '/' + image_info['file_name']
 
     # Get predictions from the model
-    predictions, original_img = inference(model, IMAGE_PATH)
+    predictions, image_plot= inference(model, IMAGE_PATH)
     
     if predictions is not None:
     # save as image
-        plot_bboxes(original_img, predictions,img_id)
+        plot_bboxes(image_plot, predictions,img_id)
     else:
         print(f"No predictions were made for image with ID {img_id}")
