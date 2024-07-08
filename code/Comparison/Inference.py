@@ -47,7 +47,7 @@ def inference(model, img_path):
         predictions = model(img_tensor)
         #print("prediction size is" ,predictions.size())
         #print("shape of tensor", img_tensor.size())
-        predictions = postprocess(predictions, exp.num_classes, exp.test_conf, exp.nmsthre)
+        predictions = postprocess(predictions1, exp.num_classes, conf_thre=0.5, nms_thre=0.25)
 
     return predictions, img_rgb
 
