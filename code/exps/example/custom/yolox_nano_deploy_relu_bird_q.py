@@ -44,7 +44,7 @@ class Exp(MyExp):
         self.basic_lr_per_img = 0.01 / 16.0 # was set to 64 but batch size is 16
 
         #from looking at pictures I assume i need to adjust nms and confidence
-        self.test_conf = 0.04
+        self.test_conf = 0.7
         self.nmsthre = 0.25
         # modify 'silu' to 'relu' for deployment on DPU
         self.act = 'relu'
