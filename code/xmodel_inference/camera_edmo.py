@@ -63,7 +63,7 @@ def decode_outputs(hw, outputs, dtype):
 
 
 
-def postprocess_2(prediction, num_classes=1, conf_thre=0.55, nms_thre=0.25, class_agnostic=False):
+def postprocess_2(prediction, num_classes=1, conf_thre=0.7, nms_thre=0.25, class_agnostic=False):
     box_corner = prediction.new(prediction.shape)
     box_corner[:, :, 0] = prediction[:, :, 0] - prediction[:, :, 2] / 2
     box_corner[:, :, 1] = prediction[:, :, 1] - prediction[:, :, 3] / 2
@@ -117,7 +117,7 @@ def inference(dpu):
     cap = cv2.VideoCapture("rtsp://admin:vogelki1@192.168.1.110")
    
     color = (0, 0, 255)  # Color for the rectangle
-    text_color = (0, 255, 0)  # Color for the text (green)
+    text_color = (0, 255, 0)  # Color for the text
     thickness = 2
     font_scale = 0.5
     font = cv2.FONT_HERSHEY_SIMPLEX
@@ -152,7 +152,7 @@ def inference(dpu):
 
                         cv2.imwrite('/mnt/usb/' + str(time.time()) + '.jpg', frame)
                         print("File saved!")
-            cv2.imshow('Frame with Bounding Box', frame)
+            #cv2.imshow('Frame with Bounding Box', frame)
 
             # Press 'q' to quit
             if cv2.waitKey(1) & 0xFF == ord('q'):
