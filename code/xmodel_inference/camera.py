@@ -63,7 +63,7 @@ def decode_outputs(hw, outputs, dtype):
 
 
 
-def postprocess_2(prediction, num_classes=1, conf_thre=0.04, nms_thre=0.25, class_agnostic=False):
+def postprocess_2(prediction, num_classes=1, conf_thre=0.7, nms_thre=0.25, class_agnostic=False):
     box_corner = prediction.new(prediction.shape)
     box_corner[:, :, 0] = prediction[:, :, 0] - prediction[:, :, 2] / 2
     box_corner[:, :, 1] = prediction[:, :, 1] - prediction[:, :, 3] / 2
